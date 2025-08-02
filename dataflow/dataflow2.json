@@ -1,0 +1,81 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_copy_input",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_derived_output",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "surrogateKey1"
+				},
+				{
+					"name": "sort1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Product_ID as short,",
+				"          Product_Name as string,",
+				"          Price as double,",
+				"          Discount as double,",
+				"          Launch_Date as date,",
+				"          Category as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive({Actual Price} = iif(!isNull(Discount), Price-(1*Discount), Price),",
+				"          {Upper Name} = upper(Product_Name)) ~> derivedColumn1",
+				"derivedColumn1 keyGenerate(output({surrogate key} as long),",
+				"     startAt: 15L,",
+				"     stepValue: 2L) ~> surrogateKey1",
+				"surrogateKey1 sort(desc({surrogate key}, true)) ~> sort1",
+				"sort1 select(mapColumn(",
+				"          {Surrogate Key} = {surrogate key},",
+				"          Product_ID,",
+				"          Product_Name,",
+				"          Price,",
+				"          Discount,",
+				"          Launch_Date,",
+				"          Category,",
+				"          {Actual Price},",
+				"          {Upper Name}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['derived.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"name": "adfsanketmagar",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "dafb4aff-315c-44aa-be37-827eee0084b4",
+		"tenantId": "3ba6f5f3-0c0a-4fe1-85f8-027e341ab7e7"
+	}
+}

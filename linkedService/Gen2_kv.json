@@ -1,0 +1,20 @@
+{
+	"name": "Gen2_kv",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://sanketstorageacc.dfs.core.windows.net/",
+			"accountKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "key-storage",
+				"secretVersion": "5855db581f4d44aca8078d4f8a94204c"
+			}
+		}
+	}
+}

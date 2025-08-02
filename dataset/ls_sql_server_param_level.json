@@ -1,0 +1,35 @@
+{
+	"name": "ls_sql_server_param_level",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"ls_server_name": {
+					"value": "@dataset().dsl_server_name",
+					"type": "Expression"
+				},
+				"ls_database_name": {
+					"value": "@dataset().dsl_database_name",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"dsl_server_name": {
+				"type": "string"
+			},
+			"dsl_database_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "ood1_stage",
+			"table": "t_cd1_src"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
