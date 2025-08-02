@@ -1,0 +1,10 @@
+{
+	"container": {
+		"type": "string",
+		"value": "input"
+	},
+	"directory": {
+		"type": "string",
+		"value": "F1"
+	}
+}

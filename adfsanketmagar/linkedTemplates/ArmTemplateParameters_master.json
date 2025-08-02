@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfsanketmagar"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"SqlServer1_password": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://sanketstorageacc.dfs.core.windows.net/"
+		},
+		"Gen2_kv_properties_typeProperties_url": {
+			"value": "https://sanketstorageacc.dfs.core.windows.net/"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/"
+		},
+		"SqlServer1_properties_typeProperties_server": {
+			"value": "@{linkedService().ls_server_name}"
+		},
+		"SqlServer1_properties_typeProperties_database": {
+			"value": "@{linkedService().ls_database_name}"
+		},
+		"SqlServer1_properties_typeProperties_userName": {
+			"value": "sanket"
+		},
+		"ls_AzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://kv-sanketm.vault.azure.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
