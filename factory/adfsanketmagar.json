@@ -1,5 +1,13 @@
 {
 	"name": "adfsanketmagar",
+	"properties": {
+		"globalParameters": {
+			"container": {
+				"type": "string",
+				"value": "input"
+			}
+		}
+	},
 	"location": "eastus",
 	"identity": {
 		"type": "SystemAssigned",
