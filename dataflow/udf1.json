@@ -1,0 +1,15 @@
+{
+	"name": "udf1",
+	"properties": {
+		"description": "if multiple condition",
+		"type": "UDFLibrary",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"DSD(string) as integer = iif(i1 =='sanket', 1, 2)"
+			]
+		}
+	}
+}
